@@ -1,0 +1,962 @@
+﻿<Window x:Class="LibraryManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagementSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" KeyDown="Main_Window">
+
+    <Grid>
+        <TabControl Name="tabControl" SelectedIndex="1" >
+            <TabItem Name="tabRegister" Header="Register" Margin="50,-5,-54,0" TabIndex="1" Visibility="Hidden">
+
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/1.png"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="210*"/>
+                        <ColumnDefinition Width="156*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox  Width="189"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="txtFirstName" Margin="8,52,0,0" Height="31" Grid.Column="1" BorderBrush="Black">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBlock IsHitTestVisible="False" Text="First Name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,60,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="1">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtFirstName}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox  Width="189"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="txtLastName" Margin="8,88,0,0" Height="31" Grid.Column="1" BorderBrush="Black">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBox  Width="189"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="txtEmail" Margin="8,124,0,0" Height="31" Grid.Column="1" BorderBrush="Black">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </TextBox.Background>
+                    </TextBox>
+                    <ComboBox Name="cmbRank" HorizontalAlignment="Left" Margin="15,253,0,0" VerticalAlignment="Top" Width="145" Grid.Column="1" Height="22"/>
+                    <Button Name="btnRegsiter" Content="Sign Up" HorizontalAlignment="Left" Margin="15,280,0,0" VerticalAlignment="Top" Width="57" Height="30" Click="btnRegsiter_Click" Grid.Column="1" FontSize="14" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                    <Label Content="Password:" HorizontalAlignment="Left" Margin="2,173,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="62"/>
+                    <PasswordBox x:Name="txtRegisterPw" HorizontalAlignment="Left" Margin="64,173,0,0" VerticalAlignment="Top" Width="87" Height="26" Grid.Column="1" BorderBrush="Black">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+                    <Label    HorizontalAlignment="Left"  Margin="2,197,0,0" VerticalAlignment="Top" Height="39" Width="70" Grid.Column="1" >
+                        <Label.Content>
+                            <AccessText TextWrapping="Wrap" Text="Verify Password:" Width="57" Height="40"/>
+                        </Label.Content>
+                    </Label>
+                    <PasswordBox x:Name="txtRegisterVerifyPw" HorizontalAlignment="Left" Margin="64,211,0,0" VerticalAlignment="Top" Width="87" Height="25" Grid.Column="1" RenderTransformOrigin="0.471,0.643" BorderBrush="Black">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+                    <TextBlock  IsHitTestVisible="False" Text="Last Name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,96,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="1">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtLastName}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock  IsHitTestVisible="False" Text="Email" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,132,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="1">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtEmail}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button x:Name="btnTabRegisterBack" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="42" Click="btnTabRegisterBack_Click" Height="33">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+                    </Button>
+
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="tabLogin" Header="Login" Margin="-57,-2,46,0" TabIndex="0" Visibility="Hidden">
+
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/lo.png"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="87*"/>
+                        <ColumnDefinition Width="485*"/>
+                        <ColumnDefinition Width="222*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="txtLoginEmail" Margin="210,128,0,0" Grid.Column="2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" BorderBrush="Black">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBlock  IsHitTestVisible="False" Text="Email" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="225,135,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="2">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtLoginEmail}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+
+                    <PasswordBox Width="190" VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="passwordBoxLogin" Margin="210,160,0,0" Height="30" Grid.Column="2"  KeyUp="passwordBoxLogin_KeyUp" BorderBrush="Black">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+                    <TextBlock IsHitTestVisible="False" Text="Password" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="225,166,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="2" x:Name="MyTextBlock">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Password.Length, ElementName=passwordBoxLogin}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button Name="btnLogin"  Content="Log In" HorizontalAlignment="Left" Margin="210,220,0,0" VerticalAlignment="Top" Width="60" Click="btnLogin_Click" Grid.Column="2" BorderBrush="Black">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnForgetPassword" Content="Forgot Your Password?" HorizontalAlignment="Left" Margin="215,195,0,0" VerticalAlignment="Top" Width="190" BorderBrush="#FFDDDDDD" Grid.Column="2" Click="btnForgetPassword_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <TextBlock>
+                                  <Hyperlink NavigateUri="https://sifremi-unuttum.com/">I forgot my password</Hyperlink>
+                                </TextBlock>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnLoginSignUp" Content="Sign Up" HorizontalAlignment="Left" Margin="340,220,0,0" VerticalAlignment="Top" Width="60" Grid.Column="2" Click="btnLoginSignUp_Click" BorderBrush="Black">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Label Grid.Column="2" HorizontalAlignment="Left" Margin="169,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.579" Height="26" Width="36">
+                        <Label.Background>
+                            <ImageBrush ImageSource="Icons/account.png"/>
+                        </Label.Background>
+                    </Label>
+                    <Label Grid.Column="2"  HorizontalAlignment="Left" Margin="167,166,0,0" VerticalAlignment="Top" Height="24" Width="38">
+                        <Label.Background>
+                            <ImageBrush ImageSource="Icons/lock.png"/>
+                        </Label.Background>
+                    </Label>
+                    <Label Grid.Column="2" Content="Welcome To Metropolition Library" HorizontalAlignment="Left" Margin="174,23,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+
+
+
+
+
+
+
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Name="tabForgetPassword" Header="ForgetPw" Margin="14,-5,-9,0" TabIndex="2" Visibility="Hidden">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/3.png"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="137*"/>
+                        <ColumnDefinition Width="657*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="txtForgetPwEmail" HorizontalAlignment="Left" Margin="180,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" Height="19" Grid.Column="1"/>
+                    <TextBlock  IsHitTestVisible="False" Text="Email" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="190,130,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="1">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtForgetPwEmail}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox Name="txtForgetPwFN" HorizontalAlignment="Left" Margin="180,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" Height="19" Grid.Column="1"/>
+                    <TextBlock  IsHitTestVisible="False" Text="First name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="190,154,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="1">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtForgetPwFN}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox Name="txtForgetPwLN" HorizontalAlignment="Left" Margin="180,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" Height="19" Grid.Column="1"/>
+                    <TextBlock  IsHitTestVisible="False" Text="Last name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="190,177,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124" Grid.Column="1">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtForgetPwLN}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button Name="btnForgetPwCancel" Content="Cancel" HorizontalAlignment="Left" Margin="180,210,0,0" VerticalAlignment="Top" Click="Button_Click_1" Grid.Column="1" Width="45" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnForgetPwContinue" Content="Continue" HorizontalAlignment="Left" Margin="260,210,0,0" VerticalAlignment="Top" Width="54" Click="btnForgetPwContinue_Click" Grid.Column="1" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+
+
+
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Name="tabHomePage" Header="HomePage" Margin="77,-4,-73,2" TabIndex="4" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="89*"/>
+                        <RowDefinition Height="101*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="287*"/>
+                        <ColumnDefinition Width="450*"/>
+                        <ColumnDefinition Width="57*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label  HorizontalAlignment="Left" Margin="25,80,0,0" VerticalAlignment="Top" Width="43" FontSize="16" Height="38" RenderTransformOrigin="0.535,0.922">
+                        <Label.Background>
+                            <ImageBrush ImageSource="Icons/menu.png"/>
+                        </Label.Background>
+                    </Label>
+                    <Button x:Name="btnHPLibrary" Content="" HorizontalAlignment="Left" Margin="24,123,0,0" VerticalAlignment="Top" Width="44" Height="30" Click="btnHPLibrary_Click" RenderTransformOrigin="0.5,0.5">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/library.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnMyBooks" Content="" HorizontalAlignment="Left" Margin="24,158,0,0" VerticalAlignment="Top" Width="44" Height="30" RenderTransformOrigin="1.366,-0.73" Click="btnMyBooks_Click" Grid.RowSpan="2">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/book-edit.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnNotifications" Content="" HorizontalAlignment="Left" Margin="24,16,0,0" VerticalAlignment="Top" Width="44" Height="30" Click="btnNotifications_Click" RenderTransformOrigin="0.5,0.601" Grid.Row="1">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/bell.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnLogout"  HorizontalAlignment="Left" Margin="425,23,0,0" VerticalAlignment="Top" Width="35" Grid.Column="1" Click="btnLogout_Click" Height="38" Grid.ColumnSpan="2">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/logout.png"/>
+                        </Button.Background>
+
+                    </Button>
+                    <Label Name="lblHomePage" Content="isim soyisim/rütbe" HorizontalAlignment="Left" Margin="253,23,0,0" VerticalAlignment="Top" Width="167" Height="33" Grid.Column="1"/>
+                    <Button x:Name="btnMyAccount" Content="" HorizontalAlignment="Left" Margin="24,51,0,0" VerticalAlignment="Top" Width="44" Height="30" Click="btnMyAccount_Click" RenderTransformOrigin="0.5,0.101" Grid.Row="1">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/account-box.png"/>
+                        </Button.Background>
+                    </Button>
+                    <DataGrid Name="gridMyBook" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="159,82,16,82" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Return">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Return" Click="btnGrid"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <Button Name="btnHomePageInfo" HorizontalAlignment="Left" Margin="24,0,0,0" VerticalAlignment="Center" Height="30" Width="44" Click="btnHomePageInfo_Click" Grid.Row="1">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/information.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Library" HorizontalAlignment="Left" Margin="68,127,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+                    <Label Content="My Books" HorizontalAlignment="Left" Margin="68,160,0,0" VerticalAlignment="Top" Height="24" Grid.RowSpan="2" FontFamily="Segoe UI Black"/>
+                    <Label Content="Notifacitions" HorizontalAlignment="Left" Margin="67,20,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+                    <Label Content="My Account" HorizontalAlignment="Left" Margin="67,55,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+                    <Label Content="About Us" HorizontalAlignment="Left" Margin="68,0,0,0" VerticalAlignment="Center" FontFamily="Segoe UI Black" Grid.Row="1"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabLibrary" Header="Library" Margin="79,-7,-79,2" TabIndex="5" Visibility="Hidden">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                    </Grid.Background>
+                    <DataGrid Name="gridLibrary" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="149,77,10,43" />
+                    <Label Content="Book Name:" HorizontalAlignment="Left" Margin="168,20,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="txtLibraryBookName" HorizontalAlignment="Left" Margin="247,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtLibraryAuthorFN" HorizontalAlignment="Left" Margin="417,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox Name="cmbBookCategory" HorizontalAlignment="Left" Margin="247,47,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox Name="cmbSortBy" HorizontalAlignment="Left" Margin="554,22,0,0" VerticalAlignment="Top" Width="136" />
+                    <Button Name="btnAddMyLibrary"  HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Click="btnAddMyLibrary_Click" Height="40" Width="44">
+                        <Button.BorderBrush>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/book-plus.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="btnListBooks"  HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="44" Click="btnListBooks_Click" Height="47">
+                        <Button.BorderBrush>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/list-box.png"/>
+                        </Button.Background>
+                    </Button>
+                    <TextBox x:Name="txtLibraryAuthorLN" HorizontalAlignment="Left" Margin="417,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock  IsHitTestVisible="False" Text="Author First Name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="430,26,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtLibraryAuthorFN}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock  IsHitTestVisible="False" Text="Author Last Name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="430,53,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="124">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtLibraryAuthorLN}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button x:Name="btnLibraryBookSearch"  HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="44" Click="btnLibraryBookSearch_Click" Height="33">
+                        <Button.BorderBrush>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/book-search.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnTabLibraryBackHome" Content="" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Click="btnTabLibraryBackHome_Click" Width="44" Height="31">
+                        <Button.BorderBrush>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/home.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="btnLibraryClear"  HorizontalAlignment="Left" Margin="707,22,0,0" VerticalAlignment="Top" Width="40" Height="36" Click="btnLibraryClear_Click">
+                        <Button.BorderBrush>
+                            <ImageBrush ImageSource="Icons/login2.png"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/delete-empty.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Search" HorizontalAlignment="Left" Margin="47,95,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+                    <Label Content="List Books" HorizontalAlignment="Left" Margin="47,137,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.579" FontFamily="Segoe UI Black"/>
+                    <Label Content="Add My Library" HorizontalAlignment="Left" Margin="47,185,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+                    <Label Content="Clear Filters" HorizontalAlignment="Left" Margin="691,51,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+
+
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabNewPassword" Header="NewPw" Margin="-107,-4,113,2" TabIndex="3" Visibility="Hidden">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/mail.png"/>
+                    </Grid.Background>
+                    <TextBox Name="txtNewPwCode" HorizontalAlignment="Left" Margin="327,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+                    <Label Name="lblNewPwText" Content="Enter the Code Sent to Your Email Address" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Height="26" Width="282"/>
+                    <Button Name="btnNewPwCancel" Content="Cancel" HorizontalAlignment="Left" Margin="327,186,0,0" VerticalAlignment="Top" Click="btnNewPwCancel_Click" Height="22" Width="45" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnNewPwApprove" Content="Approve" HorizontalAlignment="Left" Margin="392,186,0,0" VerticalAlignment="Top" Click="btnNewPwApprove_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5" Height="22" Width="55">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <PasswordBox x:Name="txtNewPwPassword" HorizontalAlignment="Left" Margin="327,127,0,0" VerticalAlignment="Top" Width="120"/>
+                    <PasswordBox x:Name="txtNewPwVerifyPassword" HorizontalAlignment="Left" Margin="327,150,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="New Password:" HorizontalAlignment="Left" Margin="238,123,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Verify Password:" HorizontalAlignment="Left" Margin="232,146,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Enter Code:" HorizontalAlignment="Left" Margin="256,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.658,0.387"/>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Name="tabAdmin" Header="Admin" Margin="73,-4,-76,2" TabIndex="7" Visibility="Hidden">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                    </Grid.Background>
+                    <DataGrid Name="gridAdminLibrary" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="100,73,43,32"/>
+                    <Button Name="btnAdmListBook" Content="List Books" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="85" Click="btnAdmListBook_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnAdmAddBook" Content="Book Setting" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Width="85" Click="btnAdmAddBook_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnAdmConfirm" Content="Confirms" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="85" Click="btnAdmConfirm_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnAdmAdminSetting" Content="Admin Setting" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.379,0.503" Width="85" Click="btnAdmAdminSetting_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnAdminLogout"  HorizontalAlignment="Left" Margin="711,15,0,0" VerticalAlignment="Top" Click="btnAdminLogout_Click" Height="38" Width="40">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/logout.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Label Name="lblAdminName" Content="Label" HorizontalAlignment="Left" Margin="647,15,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnAdminSendNotifacition" Content="Notifacitions" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="85" Click="btnAdminSendNotifacition_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabConfirm" Header="Confirms" Margin="76,0,-74,0" Height="22" VerticalAlignment="Center" Visibility="Hidden">
+                <Grid Height="390">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                    </Grid.Background>
+                    <DataGrid Name="gridUserConfirm" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="121,68,87,37">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Confirmations">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Approve" Click="btnRankConfirmations" Width="84" Height="25">
+
+
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Name="btnUserConfirmList" Content="User Approvals" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Click="btnUserConfirmList_Click" Width="102" BorderBrush="Black"/>
+
+                    <Button x:Name="btnReturnConfirm" Content="Return Approvals" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="102" Click="btnReturnConfirm_Click" BorderBrush="Black"/>
+
+
+                    <Button Name="btnAdminConfirmsBack"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="btnAdminConfirmsBack_Click" Height="33" Width="42">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+
+
+
+
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="tabAdminAddBook" Header="Book Set" Margin="102,-4,-102,2" TabIndex="9" Visibility="Hidden" >
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/6.png"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Name="txtAdmBookName" HorizontalAlignment="Left" Margin="132,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="18"/>
+                    <Label Content="Book Name:" HorizontalAlignment="Left" Margin="37,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.388" Width="75" Height="26"/>
+                    <TextBox Name="txtAdmCategoryName" HorizontalAlignment="Left" Margin="132,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="18"/>
+                    <Label Content="Category Name:" HorizontalAlignment="Left" Margin="13,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.196" Width="102" Height="26"/>
+                    <TextBox Name="txtAdmAuthorFN" HorizontalAlignment="Left" Margin="132,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="18"/>
+                    <Label Content="Author First Name:" HorizontalAlignment="Left" Margin="0,118,0,0" VerticalAlignment="Top" Height="26" Width="110"/>
+                    <TextBox Name="txtAdmAuthorLN" HorizontalAlignment="Left" Margin="132,265,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="18" RenderTransformOrigin="0.333,0.724"/>
+                    <Label Content="Author Last Name:" HorizontalAlignment="Left" Margin="2,260,0,0" VerticalAlignment="Top" Height="25" Width="110"/>
+                    <TextBox Name="txtAdmNumberOfPage" HorizontalAlignment="Left" Margin="132,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Number Of Page:" HorizontalAlignment="Left" Margin="11,153,0,0" VerticalAlignment="Top" Width="108"/>
+                    <Button Name="btnAdmAdd" Content="Add Book" HorizontalAlignment="Left" Margin="144,330,0,0" VerticalAlignment="Top" Width="96" Click="btnAdmAdd_Click" Height="30">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <TextBox Name="txtAdmStockAmount" HorizontalAlignment="Left" Margin="132,298,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Stock Amount:" HorizontalAlignment="Left" Margin="23,290,0,0" VerticalAlignment="Top" Width="92"/>
+                    <TextBox x:Name="txtAdmProductionYear" HorizontalAlignment="Left" Margin="132,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Production Year:" HorizontalAlignment="Left" Margin="15,187,0,0" VerticalAlignment="Top" Width="100"/>
+                    <Label Content="Adding a new book to the library" HorizontalAlignment="Left" Margin="23,36,0,0" VerticalAlignment="Top" Width="260" FontSize="16"/>
+                    <TextBox x:Name="txtSettingBL" HorizontalAlignment="Left" Margin="384,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
+                    <Label Content="Book Limits :" HorizontalAlignment="Left" Margin="302,87,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnSettingUpdate" Content="Update" HorizontalAlignment="Left" Margin="397,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.584,-0.246" Click="Button_Click_3" Width="80" Height="30">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Label Content="Book Limits Setting" HorizontalAlignment="Left" Margin="358,36,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Button Name="btnAdminBookSetBack"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="btnAdminBookSetBack_Click" Height="33" Width="42">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                    <TextBox Name="txtAdminDeadLine" HorizontalAlignment="Left" Margin="387,208,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="23"/>
+                    <Label Content="Book Deadline :" HorizontalAlignment="Left" Margin="290,207,0,0" VerticalAlignment="Top"/>
+                    <Button Name="btnAdminDeadLine" Content="Update" HorizontalAlignment="Left" Margin="397,253,0,0" VerticalAlignment="Top" Height="32" Width="80">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabAdminSendEmail" Header="SendE" Margin="108,0,-108,0" Height="20" VerticalAlignment="Top" TabIndex="10" Visibility="Hidden" >
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                    </Grid.Background>
+                    <DataGrid Name="gridAdminUser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="407,61,17,61"/>
+                    <TextBox x:Name="txtAdminSendEmail" HorizontalAlignment="Left" Margin="47,161,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="310" Height="108"/>
+                    <TextBlock  IsHitTestVisible="False" Text="Write the content of the mail" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="57,161,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="178">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtAdminSendEmail}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button Name="btnSendEmail" Content="Send" HorizontalAlignment="Left" Margin="302,301,0,0" VerticalAlignment="Top" Width="45" Click="btnSendEmail_Click" BorderBrush="Black"/>
+
+                    <Button Name="btnAdminListUser" Content="List User" HorizontalAlignment="Left" Margin="684,326,0,0" VerticalAlignment="Top" Click="btnAdminListUser_Click"/>
+                    <TextBox x:Name="txtAdminSendEmailObj" HorizontalAlignment="Left" Margin="47,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="310"/>
+                    <TextBlock  IsHitTestVisible="False" Text="Write the Object of the mail" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="57,92,0,0" Foreground="DarkGray" RenderTransformOrigin="0.364,0.381" Height="16" Width="178">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=txtAdminSendEmailObj}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button x:Name="btnAdminListRecords" Content="List Records" HorizontalAlignment="Left" Margin="612,326,0,0" VerticalAlignment="Top" Click="btnAdminListRecords_Click"/>
+                    <ComboBox Name="cmbAdminEmailType" HorizontalAlignment="Left" Margin="627,34,0,0" VerticalAlignment="Top" Width="150"/>
+                    <Button x:Name="btnSendEmailBack"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="btnSendEmailBack_Click" Height="33" Width="42">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnPastDelivery" Content="Past Delivery" HorizontalAlignment="Left" Margin="536,326,0,0" VerticalAlignment="Top" Click="btnPastDelivery_Click"/>
+
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabMyAccount" Header="MyAc" Margin="-182,-5,183,3" TabIndex="6" Visibility="Hidden">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/5.png"/>
+                    </Grid.Background>
+                    <Label Name="lblMyAccountFN" Content="First Name:" HorizontalAlignment="Left" Margin="52,60,0,0" VerticalAlignment="Top" Width="70"/>
+                    <Label Name="lblMyAccountUserFN" Content="label" HorizontalAlignment="Left" Margin="154,60,0,0" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.635,0.502"/>
+                    <Label Content="Last Name:" HorizontalAlignment="Left" Margin="52,104,0,0" VerticalAlignment="Top" Width="80"/>
+                    <Label Name="lblMyAccountUserLN" Content="Label" HorizontalAlignment="Left" Margin="154,104,0,0" VerticalAlignment="Top" Width="63"/>
+                    <Label Content="E-mail:" HorizontalAlignment="Left" Margin="52,143,0,0" VerticalAlignment="Top" Width="70"/>
+                    <Label Name="lblMyAccountUserEmail" Content="Label" HorizontalAlignment="Left" Margin="154,143,0,0" VerticalAlignment="Top" Width="208"/>
+                    <Label Content="Register Date:" HorizontalAlignment="Left" Margin="52,181,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label Name="lblMyAccountUserRD" Content="Label" HorizontalAlignment="Left" Margin="154,181,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Rank:" HorizontalAlignment="Left" Margin="52,220,0,0" VerticalAlignment="Top" Width="70"/>
+                    <Label Name="lblMyAccountRank" Content="Label" HorizontalAlignment="Left" Margin="154,220,0,0" VerticalAlignment="Top"/>
+                    <Label Content="User Informations" HorizontalAlignment="Left" Margin="56,16,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label Content="Password:" HorizontalAlignment="Left" Margin="52,260,0,0" VerticalAlignment="Top"/>
+                    <Label Content="********" HorizontalAlignment="Left" Margin="154,260,0,0" VerticalAlignment="Top"/>
+                    <Label Content="New Password:" HorizontalAlignment="Left" Margin="469,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.132,0.387" Width="93"/>
+                    <Label Content="Verify New Password:" HorizontalAlignment="Left" Margin="469,143,0,0" VerticalAlignment="Top"/>
+                    <PasswordBox x:Name="txtMANPassword" HorizontalAlignment="Left" Margin="597,103,0,0" VerticalAlignment="Top" Width="120"/>
+                    <PasswordBox x:Name="txtMAVNPassword" HorizontalAlignment="Left" Margin="597,147,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="btnMAChangePw" Content="Change Password" HorizontalAlignment="Left" Margin="608,192,0,0" VerticalAlignment="Top" Click="btnMAChangePw_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5" Width="99">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnDeleteAccount"  HorizontalAlignment="Left" Margin="732,23,0,0" VerticalAlignment="Top" Click="btnDeleteAccount_Click" Height="38" Width="40">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/account-off.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnMyAccountBack"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.379,0.253" Width="42" Click="btnMyAccountBack_Click" Height="33">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabAdminAddAndList" Header="Admin Set" Margin="0,-5,-108,3" HorizontalAlignment="Right" Width="71"  TabIndex="11" Visibility="Hidden" >
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/Adsız tasarım.png"/>
+                    </Grid.Background>
+
+                    <Label Content="First Name:" HorizontalAlignment="Left" Margin="42,62,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtAdminFirstName" HorizontalAlignment="Left" Margin="117,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.542,0.047"/>
+                    <Label Content="Last Name:" HorizontalAlignment="Left" Margin="43,104,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtAdminLastName" HorizontalAlignment="Left" Margin="117,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
+                    <Label Content="Email:" HorizontalAlignment="Left" Margin="71,150,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtAdminEmail" HorizontalAlignment="Left" Margin="117,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
+                    <Label Content="Password:" HorizontalAlignment="Left" Margin="49,191,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnAddAdmin" Content="Add Admin" HorizontalAlignment="Left" Margin="144,274,0,0" VerticalAlignment="Top" Height="24" Width="66" Click="btnAddAdmin_Click" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Label Content="Add a new Admin" HorizontalAlignment="Left" Margin="101,26,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <DataGrid x:Name="gridAdminList" d:ItemsSource="{Binding Admins}" Margin="287,59,10,68"/>
+                    <PasswordBox x:Name="txtAdminPassword" HorizontalAlignment="Left" Margin="117,195,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+                    <Label Content="Verify Password:" HorizontalAlignment="Left" Margin="17,232,0,0" VerticalAlignment="Top"/>
+                    <PasswordBox x:Name="txtAdminVerifyPassword" HorizontalAlignment="Left" Margin="117,236,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+                    <Button x:Name="btnAdminSettingList" Content="List Admins" HorizontalAlignment="Left" Margin="287,32,0,0" VerticalAlignment="Top" Click="btnAdminSettingList_Click" Height="22" BorderBrush="Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnAdminSettingDelete" Content="Delete Admin" HorizontalAlignment="Left" Margin="357,32,0,0" VerticalAlignment="Top" Width="77" Click="btnAdminSettingDelete_Click" Height="22">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="Black"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnAdminSetBack"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="btnAdminSetBack_Click" Height="33" Width="42">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="tabInfo" Header="Information" Margin="-33,-4,29,2" Visibility="Hidden">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Icons/login2.png"/>
+                    </Grid.Background>
+                    <Label  Name="lblInfo" HorizontalAlignment="Left" VerticalAlignment="Center" Height="360" Width="710" Margin="67,0,0,0"/>
+                    <Button  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.503" Height="33" Width="42" Click="Button_Click_2">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/arrow-left-circle.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="7">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                </Grid>
+
+            </TabItem>
+
+
+
+
+        </TabControl>
+
+    </Grid>
+</Window>
